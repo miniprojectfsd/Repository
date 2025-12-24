@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Plus, MapPin, Flame } from 'lucide-react';
-import { supabase, Database } from '../lib/supabase';
+import { supabase, Database } from '../supabase';
 import { useCart } from '../contexts/CartContext';
 
 type FoodItem = Database['public']['Tables']['food_items']['Row'];

@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { X, ArrowLeft, CheckCircle } from 'lucide-react';
 import { useCart } from '../contexts/CartContext';
 import { useAuth } from '../contexts/AuthContext';
-import { supabase } from '../lib/supabase';
+import { supabase } from '../supabase';
 
 interface CheckoutProps {
   onClose: () => void;

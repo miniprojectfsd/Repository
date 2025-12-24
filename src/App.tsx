@@ -1,20 +1,23 @@
-import { useState } from 'react';
-import { AuthProvider, useAuth } from './contexts/AuthContext';
-import { CartProvider, useCart } from './contexts/CartContext';
-import Auth from './components/Auth';
-import Header from './components/Header';
-import FoodListing from './components/FoodListing';
-import Cart from './components/Cart';
-import Checkout from './components/Checkout';
-import Profile from './components/Profile';
+import { useState } from "react";
+import { AuthProvider, useAuth } from "./contexts/AuthContext";
+import { CartProvider, useCart } from "./contexts/CartContext";
+
+import Login from "./components/Login";
+import Header from "./components/Header";
+import Food from "./components/Food";
+import Cart from "./components/Cart";
+import Checkout from "./components/Checkout";
+import Profile from "./components/Profile";
 
 function AppContent() {
   const { user, loading } = useAuth();
   const { itemCount } = useCart();
+
   const [showCart, setShowCart] = useState(false);
   const [showCheckout, setShowCheckout] = useState(false);
   const [showProfile, setShowProfile] = useState(false);
 
+  // Loading state
   if (loading) {
     return (
       <div className="min-h-screen bg-gray-100 flex items-center justify-center">
@@ -23,10 +26,12 @@ function AppContent() {
     );
   }
 
+  // Not logged in
   if (!user) {
-    return <Auth />;
+    return <Login />;
   }
 
+  // Logged in UI
   return (
     <div className="min-h-screen bg-gray-50">
       <Header
@@ -34,7 +39,8 @@ function AppContent() {
         onCartClick={() => setShowCart(true)}
         onProfileClick={() => setShowProfile(true)}
       />
-      <FoodListing />
+
+      <Food />
 
       {showCart && (
         <Cart
@@ -56,7 +62,9 @@ function AppContent() {
         />
       )}
 
-      {showProfile && <Profile onClose={() => setShowProfile(false)} />}
+      {showProfile && (
+        <Profile onClose={() => setShowProfile(false)} />
+      )}
     </div>
   );
 }

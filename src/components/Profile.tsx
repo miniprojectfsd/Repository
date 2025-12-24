@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { X, User, Package, Clock } from 'lucide-react';
 import { useAuth } from '../contexts/AuthContext';
-import { supabase, Database } from '../lib/supabase';
+import { supabase, Database } from '../supabase';
 
 type Order = Database['public']['Tables']['orders']['Row'];
 
